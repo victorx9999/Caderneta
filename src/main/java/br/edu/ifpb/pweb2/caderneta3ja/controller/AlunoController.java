@@ -3,6 +3,9 @@ package br.edu.ifpb.pweb2.caderneta3ja.controller;
 
 import java.util.List;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
-import br.edu.ifpb.pweb2.caderneta3ja.repository.AlunoRepository;
+import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 
 @Controller
-@RequestMapping( value = "/aluno")
+@RequestMapping(value = "/aluno")
 public class AlunoController {
 	
 	@Autowired
-	AlunoRepository alunoRepository;
+	UsuarioRepository alunoRepository;
 	
 	@RequestMapping(value = "")
 	public ModelAndView listarDisciplinasAluno() {
@@ -34,7 +37,7 @@ public class AlunoController {
 	 @GetMapping("/list")
 	 public String ListaAluno(Model model) {
 		 System.out.println(alunoRepository);
-		 model.addAttribute("TP_PERFIL", alunoRepository.findBytipo("Aluno"));
+		 model.addAttribute("TP_PERFIL", alunoRepository.findByPerfil("ALUNO"));
 		 return "aluno/listAluno";
 	 }
 
